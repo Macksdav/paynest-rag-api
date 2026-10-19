@@ -1,0 +1,10 @@
+Standard bank transfers take 1 to 3 business days to arrive.
+Instant transfers arrive within 30 seconds and cost a 1% fee.
+Customers can freeze a lost card from the mobile app at any time.
+Accounts with more than three failed login attempts are locked for 24 hours.
+Identity verification requires a passport or national ID card.
+Transactions above 5000 dollars are flagged for manual compliance review.
+Refunds for disputed card payments are processed within 10 business days.
+Support is available by chat from 8am to 8pm on weekdays.
+Two-factor authentication can be enabled in the security settings.
+Monthly account statements are sent by email on the first day of each month.

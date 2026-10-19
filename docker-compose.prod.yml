@@ -1,0 +1,46 @@
+# Production (EC2): pulls the prebuilt image that GitHub Actions pushed.
+# API_IMAGE is set by the deploy step. API_KEY comes from /opt/paynest/.env on the server.
+services:
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+    # No "ports:" on purpose: Ollama must NOT be reachable from the internet.
+
+  ollama-pull:
+    image: ollama/ollama
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["ollama pull nomic-embed-text && ollama pull llama3.2:3b"]
+    restart: "no"
+
+  api:
+    image: ${API_IMAGE}
+    depends_on:
+      ollama-pull:
+        condition: service_completed_successfully
+    environment:
+      LLM_MODE: ollama
+      OLLAMA_BASE_URL: http://ollama:11434
+      API_KEY: ${API_KEY:?Set API_KEY in /opt/paynest/.env}
+    ports:
+      - "80:8000"
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  ollama_data:

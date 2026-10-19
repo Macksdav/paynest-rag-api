@@ -1,0 +1,40 @@
+# Local development: API + Ollama together.
+#   docker compose up --build
+# First start downloads the models (a few GB), so it takes a while.
+services:
+  ollama:
+    image: ollama/ollama
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  ollama-pull:
+    image: ollama/ollama
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["/bin/sh", "-c"]
+    command: ["ollama pull nomic-embed-text && ollama pull llama3.2:3b"]
+    restart: "no"
+
+  api:
+    build: .
+    depends_on:
+      ollama-pull:
+        condition: service_completed_successfully
+    environment:
+      LLM_MODE: ollama
+      OLLAMA_BASE_URL: http://ollama:11434
+      API_KEY: ${API_KEY:-}
+    ports:
+      - "8000:8000"
+    restart: on-failure
+
+volumes:
+  ollama_data:

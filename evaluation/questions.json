@@ -1,0 +1,15 @@
+[
+  {"question": "How long do standard bank transfers take?", "expected_fact": "Standard bank transfers", "answer_contains": "1 to 3 business days"},
+  {"question": "How much does an instant transfer cost?", "expected_fact": "Instant transfers", "answer_contains": "1% fee"},
+  {"question": "How can I freeze a lost card?", "expected_fact": "freeze a lost card", "answer_contains": "mobile app"},
+  {"question": "What happens after more than three failed login attempts?", "expected_fact": "failed login attempts", "answer_contains": "locked for 24 hours"},
+  {"question": "What do I need for identity verification?", "expected_fact": "Identity verification", "answer_contains": "passport"},
+  {"question": "Which transactions are flagged for compliance review?", "expected_fact": "flagged for manual compliance review", "answer_contains": "5000 dollars"},
+  {"question": "How long do refunds for disputed card payments take?", "expected_fact": "Refunds for disputed card payments", "answer_contains": "10 business days"},
+  {"question": "When is chat support available?", "expected_fact": "Support is available by chat", "answer_contains": "8am to 8pm"},
+  {"question": "How do I enable two-factor authentication?", "expected_fact": "Two-factor authentication", "answer_contains": "security settings"},
+  {"question": "When are monthly statements sent by email?", "expected_fact": "Monthly account statements", "answer_contains": "first day"},
+  {"question": "What is the card replacement fee?", "expected_fact": null},
+  {"question": "Do you support cryptocurrency withdrawals?", "expected_fact": null},
+  {"question": "What is the weather in Lagos today?", "expected_fact": null}
+]
