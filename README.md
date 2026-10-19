@@ -9,7 +9,9 @@
 
 A retrieval-augmented (RAG) customer support assistant for a fictional payments app. It answers questions **only from an approved knowledge base**, cites its sources, and says "I can't find that in our help centre" instead of guessing, which matters in financial services where a wrong answer is a compliance problem.
 
-Built end to end: LangChain + FAISS + Ollama for the AI, FastAPI for the API, a small chat UI, Docker, a CI/CD pipeline with an automated evaluation gate, and deployment to AWS EC2.
+![RAG](docs/rag_banner.png)
+
+Built end-to-end: LangChain + FAISS + Ollama for the AI, FastAPI for the API, a small chat UI, Docker, a CI/CD pipeline with an automated evaluation gate, and deployment to AWS EC2.
 
 ## Project status
 
